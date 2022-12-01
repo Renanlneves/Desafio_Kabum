@@ -4,7 +4,7 @@ from typing import Dict
 
 class Package(BaseModel):
     id: int
-    dimensao: Dict [str: int, str: int]
+    dimensao: Dict[str, int]
     peso: int
     
     class Config:

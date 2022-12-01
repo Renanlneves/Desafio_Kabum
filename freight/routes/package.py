@@ -23,6 +23,9 @@ async def get_one_package(id: int) -> Package:
 
 @package_router.post("/package")
 async def new_package(body: Package = Body(...)) -> dict:
+    for package in packages:
+        if body.id == package.id:
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Um pacote com esse id já existe.")
     packages.append(body)
     return {"mesagem": "pacote registrado com sucesso."}
 
