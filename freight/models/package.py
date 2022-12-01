@@ -1,10 +1,9 @@
-from importlib.resources import Package
 from pydantic import BaseModel
 from typing import Dict
 
 
 class Package(BaseModel):
-    id: int
+    id: str
     dimensao: Dict [str: int, str: int]
     peso: int
     
