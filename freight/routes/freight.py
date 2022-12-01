@@ -7,8 +7,8 @@ freights = {}
 
 @user_router.post("/company")
 async def new_company(data:Freight) -> dict:
-    if data.id or data.nome in freights:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Uma companhia com esse id ou nome já existe.")
+    if data.id in freights:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Uma companhia com esse id já existe.")
 
     freights[data.id] = data
     return {"mensagem": "Companhia registrada com sucesso!"}

@@ -9,7 +9,7 @@ class Package(BaseModel):
     
     class Config:
         schema_extra = {
-            "exemplo": {
+            "example": {
                 "id": "01",
                 "dimensao": {
                     "altura": 102,
