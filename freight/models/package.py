@@ -3,14 +3,14 @@ from typing import Dict
 
 
 class Package(BaseModel):
-    id: str
+    id: int
     dimensao: Dict [str: int, str: int]
     peso: int
     
     class Config:
         schema_extra = {
             "example": {
-                "id": "01",
+                "id": 1,
                 "dimensao": {
                     "altura": 102,
                     "largura": 40

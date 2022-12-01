@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 class Freight(BaseModel):
-    id: str
+    id: int
     nome: str
     constante_calculo: float
     altura_maxima: int
@@ -13,7 +13,7 @@ class Freight(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "id": "01",
+                "id": 1,
                 "nome": "Entrega Ninja",
                 "constante_calculo": 0.3,
                 "altura_minima": 10,

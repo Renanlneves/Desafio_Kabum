@@ -1,11 +1,11 @@
 from fastapi import APIRouter, HTTPException, status
 from models.freight import Freight
 
-user_router = APIRouter(tags=["freight"])
+freight_router = APIRouter(tags=["Frete"])
 
 freights = {}
 
-@user_router.post("/company")
+@freight_router.post("/company")
 async def new_company(data:Freight) -> dict:
     if data.id in freights:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Uma companhia com esse id já existe.")
