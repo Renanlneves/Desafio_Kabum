@@ -1,4 +1,3 @@
-from asyncio import events
 from fastapi import APIRouter, Body, HTTPException,status
 from typing import List
 from models.package import Package
