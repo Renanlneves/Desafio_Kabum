@@ -1,15 +1,19 @@
-from pydantic import BaseModel, ValidationError, validator
-from typing import Dict
+from fastapi import Body, APIRouter
+from models.package import Package
+from routes.package import packages
 
+
+delivery_router = APIRouter(tags=["Tipo de entrega"])
 delivery_type = []
 
 
 
-class Package(BaseModel):
-    nome: str
-    valor_frete: int
-    prazo_dias: int
 
+@delivery_router.get("/tipo_entrega")
+async def validar_dimensao():
+    for package in packages:
+        if package.dimensao:
+            return package.dimensao["altura"]
     
 
 

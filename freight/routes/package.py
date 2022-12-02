@@ -9,6 +9,7 @@ packages = []
 
 @package_router.get("/", response_model= List[Package])
 async def get_all_packages() -> dict[Package]:
+    
     return packages
 
 
