@@ -5,7 +5,7 @@ from typing import Dict
 class Package(BaseModel):
     id: int
     dimensao: Dict[str, int]
-    peso: int
+    peso: float
     
     class Config:
         schema_extra = {

@@ -10,7 +10,7 @@ delivery_type = []
 
 
 @delivery_router.get("/delivery_type")
-async def validar_dimensao():
+async def validar_ent_ninja():
     for package in packages:
         if package.dimensao["altura"] > 10 and package.dimensao["altura"] < 200:
             if package.dimensao["largura"] > 6 and package.dimensao["largura"] < 140:
