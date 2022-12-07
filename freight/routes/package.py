@@ -21,7 +21,7 @@ async def get_one_package(id: int) -> Package:
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Pacote com o ID informado não existe.")
 
 
-@package_router.post("/package")
+@package_router.post("/package", status_code=status.HTTP_201_CREATED)
 async def new_package(body: Package = Body(...)) -> dict:
     for package in packages:
         if body.id == package.id:
@@ -30,7 +30,7 @@ async def new_package(body: Package = Body(...)) -> dict:
     return {"mesagem": "pacote registrado com sucesso."}
 
 
-@package_router.delete("/{id}")
+@package_router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_package(id:int) -> dict:
     for package in packages:
         if package.id == id:
@@ -39,7 +39,7 @@ async def delete_package(id:int) -> dict:
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="O pacote com a ID informada não existe.")
 
 
-@package_router.delete("/")
+@package_router.delete("/", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_all_packages() -> dict:
     packages.clear()
     return {"mensagem": "Todos os pacotes foram deletados."}

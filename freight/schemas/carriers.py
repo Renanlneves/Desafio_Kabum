@@ -3,11 +3,6 @@ from routes.package import packages
 
 class Carriers():
     
-    async def __init__(self, ninja, kabum):
-        self.ninja = ninja
-        self.kabum = kabum
-
-
     async def validar_ent_ninja():
         for package in packages:
             if package.dimensao["altura"] > 10 and package.dimensao["altura"] < 200:
