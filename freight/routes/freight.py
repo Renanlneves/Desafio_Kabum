@@ -15,7 +15,7 @@ freights = [{
 
             },
             {
-                "id": 1,
+                "id": 2,
                 "nome": "Entrega Kabum",
                 "constante_calculo": 0.2,
                 "altura_minima": 5,
