@@ -53,16 +53,23 @@ async def new_package(pack:Package) -> dict:
     if  carrier.validar_ent_ninja(packages):
 
         preco_ninja = round((packages[0].peso * freights[0]["constante_calculo"])/ 10, 2) 
-        delivery_type.append(preco_ninja)
+        Delivery_type.nome = "ninja"
+        Delivery_type.valor_frete = preco_ninja
+        Delivery_type.prazo_dias = 6
+        delivery_type.append(Delivery_type)
         
-    if carrier.validar_ent_kabum(packages):
-        preco_kabum = round((packages[0].peso * freights[1]["constante_calculo"])/ 10, 2)
+        #delivery_type.append(Delivery_type.valor_frete(preco_ninja))
+        #delivery_type.append(Delivery_type.prazo_dias(6))
         
-        delivery_type.append(preco_kabum)
+    #if carrier.validar_ent_kabum(packages):
+        #preco_kabum = round((packages[0].peso * freights[1]["constante_calculo"])/ 10, 2)
+        
+        #delivery_type.append({"preco_kabum": preco_kabum})
 
     return {"mensagem": "pacote registrado com sucesso!"}
 
 
 @package_router.get("/", response_model= List[Delivery_type])
 async def get_all_delivery_types():# -> dict[Delivery_type]:
+    print (delivery_type)
     return delivery_type
