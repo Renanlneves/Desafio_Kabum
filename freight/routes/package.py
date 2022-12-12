@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException,status
 from typing import List
-from freight.models.package import Package
-from freight.routes.freight import freights
-from freight.models.delivery_type import Delivery_type
+from models.package import Package
+from routes.freight import freights
+from models.delivery_type import Delivery_type
 
 
 package_router = APIRouter(tags=["Pacotes"])
@@ -36,7 +36,7 @@ async def new_package(pack:Package) -> dict:
             if package.dimensao["altura"] > 5 and package.dimensao["altura"] < 140:
                 if package.dimensao["largura"] > 13 and package.dimensao["largura"] < 125:
                     if package.peso > 0:                
-                        preco_kabum = round((packages[0].peso * freights[0]["constante_calculo"])/ 10, 2)
+                        preco_kabum = round((packages[0].peso * freights[1]["constante_calculo"])/ 10, 2)
                         delivery_test = Delivery_type(nome="Kabum",valor_frete=preco_kabum, prazo_dias=6)
 
                         delivery_type.append(delivery_test)
