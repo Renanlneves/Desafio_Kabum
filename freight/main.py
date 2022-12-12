@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from routes.freight import freight_router
-from routes.package import package_router
+from freight.routes.freight import freight_router
+from freight.routes.package import package_router
 import uvicorn
 
 app = FastAPI()

@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 
 class Delivery_type(BaseModel):
-    nome = str
-    valor_frete = float
-    prazo_dias = int
+    nome : str
+    valor_frete : float
+    prazo_dias : int
 
 
     class Config:

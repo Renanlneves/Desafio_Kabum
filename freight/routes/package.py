@@ -1,75 +1,47 @@
 from fastapi import APIRouter, HTTPException,status
 from typing import List
-from models.package import Package
-from routes.freight import freights
-from schemas.carriers import Carriers
-from models.delivery_type import Delivery_type
+from freight.models.package import Package
+from freight.routes.freight import freights
+from freight.models.delivery_type import Delivery_type
+
 
 package_router = APIRouter(tags=["Pacotes"])
-carrier = Carriers()
+
 
 packages = []
 delivery_type = []
 
 
-#@package_router.get("/", response_model= List[Package])
-#async def get_all_packages() -> dict[Package]:
-    
-#    return packages
-
-
-#@package_router.get("/{id}", response_model=Package)
-#async def get_one_package(id: int) -> Package:
-#    for package in packages:
-#        if package.id == id:
-#            return package
-#    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Pacote com o ID informado não existe.")
-
-
-#@package_router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-#async def delete_package(id:int) -> dict:
-#    for package in packages:
-#        if package.id == id:
-#            packages.remove(package)
-#            return {"mensagem": "Pacote deletado com sucesso!"}
-#    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="O pacote com a ID informada não existe.")
-
-
-#@package_router.delete("/", status_code=status.HTTP_204_NO_CONTENT)
-#async def delete_all_packages() -> dict:
-#    packages.clear()
-#    return {"mensagem": "Todos os pacotes foram deletados."}
 
 
 
-
-@package_router.post("/package", status_code=status.HTTP_201_CREATED)
+@package_router.post("/package/", response_model=List[Delivery_type] ,status_code=status.HTTP_201_CREATED)
 async def new_package(pack:Package) -> dict:
     for package in packages:
         if pack.id == package.id:
             raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Um pacote com esse id já existe.")
     packages.append(pack)
+    
+    
+    for package in packages:
+        if package.dimensao["altura"] > 10 and package.dimensao["altura"] < 200:
+            if package.dimensao["largura"] > 6 and package.dimensao["largura"] < 140:
+                if package.peso > 0:
+                    preco_ninja = round((packages[0].peso * freights[0]["constante_calculo"])/ 10, 2)
+                    delivery_test = Delivery_type(nome="Ninja",valor_frete=preco_ninja, prazo_dias=6)
+                   
+                    delivery_type.append(delivery_test)
 
-    if  carrier.validar_ent_ninja(packages):
+    for package in packages:
+            if package.dimensao["altura"] > 5 and package.dimensao["altura"] < 140:
+                if package.dimensao["largura"] > 13 and package.dimensao["largura"] < 125:
+                    if package.peso > 0:                
+                        preco_kabum = round((packages[0].peso * freights[0]["constante_calculo"])/ 10, 2)
+                        delivery_test = Delivery_type(nome="Kabum",valor_frete=preco_kabum, prazo_dias=6)
 
-        preco_ninja = round((packages[0].peso * freights[0]["constante_calculo"])/ 10, 2) 
-        Delivery_type.nome = "ninja"
-        Delivery_type.valor_frete = preco_ninja
-        Delivery_type.prazo_dias = 6
-        delivery_type.append(Delivery_type)
-        
-        #delivery_type.append(Delivery_type.valor_frete(preco_ninja))
-        #delivery_type.append(Delivery_type.prazo_dias(6))
-        
-    #if carrier.validar_ent_kabum(packages):
-        #preco_kabum = round((packages[0].peso * freights[1]["constante_calculo"])/ 10, 2)
-        
-        #delivery_type.append({"preco_kabum": preco_kabum})
+                        delivery_type.append(delivery_test)
 
-    return {"mensagem": "pacote registrado com sucesso!"}
-
-
-@package_router.get("/", response_model= List[Delivery_type])
-async def get_all_delivery_types():# -> dict[Delivery_type]:
-    print (delivery_type)
     return delivery_type
+
+
+

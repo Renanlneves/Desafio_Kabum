@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
-from models.freight import Freight
+from freight.models.freight import Freight
+
 
 freight_router = APIRouter(tags=["Frete"])
 
