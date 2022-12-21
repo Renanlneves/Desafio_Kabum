@@ -5,8 +5,8 @@ import uvicorn
 
 app = FastAPI()
 
-app.include_router(freight_router, prefix="/company")
-app.include_router(package_router, prefix="/package")
+app.include_router(freight_router, prefix="/companys")
+app.include_router(package_router, prefix="/packages")
 
 
 if __name__ == "__main__":

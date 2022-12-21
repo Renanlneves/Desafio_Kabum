@@ -28,7 +28,7 @@ freights = [{
             }
 ]
 
-@freight_router.post("/company")
+@freight_router.post()
 async def new_company(data:Freight) -> dict:
     if data.id in freights:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Uma companhia com esse id já existe.")
@@ -37,6 +37,6 @@ async def new_company(data:Freight) -> dict:
     return {"mensagem": "Companhia registrada com sucesso!"}
 
 
-@freight_router.get("/company")
+@freight_router.get()
 async def get_companys():
     return freights
